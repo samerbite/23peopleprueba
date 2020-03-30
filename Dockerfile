@@ -9,4 +9,4 @@ EXPOSE 8080
 ADD build/libs/cl-0.0.1-SNAPSHOT.jar /app/cl-0.0.1-SNAPSHOT.jar
 # Run the jar file
 WORKDIR /app
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/api23people.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/cl-0.0.1-SNAPSHOT.jar"]
