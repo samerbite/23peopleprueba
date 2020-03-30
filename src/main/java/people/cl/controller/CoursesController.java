@@ -13,8 +13,11 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/23people/api")
-public class ApiController {
+@RequestMapping(value ="/23people/api", headers = {
+        "Content-Type=application/json",
+        "Accept=application/json"
+})
+public class CoursesController {
     @Autowired
     private CourseService courseService;
 
@@ -52,14 +55,14 @@ public class ApiController {
 
     @PostMapping(value = "/courses/guardacurso")
     public ResponseEntity<Course>saveCourse(@Valid @RequestBody Course course){
-        courseService.guardarCurso(course);
-        return new ResponseEntity<>(course, HttpStatus.CREATED);
+        ResponseEntity<Course> response = courseService.guardarCurso(course);
+        return response;
     }
 
     @PutMapping(value = "/courses/actualizacion/{id}")
     public ResponseEntity<Course>update(@Valid @RequestBody Course course, @PathVariable("id") Long id){
-        courseService.actualizacion(id, course);
-        return new ResponseEntity<>(course, HttpStatus.OK);
+        ResponseEntity <Course> response = courseService.actualizacion(id, course);
+        return (response);
     }
 
     @DeleteMapping(value = "/courses/elimina/{id}")

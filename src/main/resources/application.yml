@@ -1,0 +1,15 @@
+errores:
+  camposVacios:
+    codigo: "Cod001"
+    Mensaje: "Campos no pueden estar vacios"
+
+  camposNulos:
+    codigo: "Cod002"
+    mensaje: "Campos no pueden estar nulos"
+
+  registroNoExiste:
+    codigo: "Cod003"
+    mensaje: "No existe el registro"
+
+jwt:
+  secret: "23people"

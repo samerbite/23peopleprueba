@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
-    @Override
     Optional<Course> findById(Long id);
     List<Course> findAll ();
     Page<Course> findAll (Pageable pageable);

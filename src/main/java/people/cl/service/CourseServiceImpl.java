@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import people.cl.configuration.ErroresConfiguration;
 import people.cl.model.Course;
 import people.cl.repository.CourseRepository;
 
@@ -18,6 +19,8 @@ import java.util.Optional;
 public class CourseServiceImpl implements CourseService {
     @Autowired
     private CourseRepository courseRepository;
+    @Autowired
+    private ErroresConfiguration erroresConfiguration;
 
     @Override
     public Optional<Course>buscarPorId(Long id){
@@ -36,6 +39,12 @@ public class CourseServiceImpl implements CourseService {
     }
     @Override
     public ResponseEntity<Course> guardarCurso (Course course){
+        if (course.getCode() == null || course.getName() == null){
+            return new ResponseEntity(erroresConfiguration.getCamposNulos(), HttpStatus.BAD_REQUEST);
+        }
+        if (course.getCode().equals("") || course.getName().equals("")){
+            return new ResponseEntity(erroresConfiguration.getCamposVacios(), HttpStatus.BAD_REQUEST);
+        }
         Course response = courseRepository.save(course);
         return new ResponseEntity<Course>(response, HttpStatus.CREATED);
     }
@@ -43,6 +52,12 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public ResponseEntity<Course> actualizacion(Long id, Course course){
         course.setId(id);
+        if (course.getCode() == null || course.getName() == null){
+            return new ResponseEntity(erroresConfiguration.getCamposNulos(), HttpStatus.BAD_REQUEST);
+        }
+        if (course.getCode().equals("") || course.getName().equals("")){
+                return new ResponseEntity(erroresConfiguration.getCamposVacios(), HttpStatus.BAD_REQUEST);
+        }
         Course response = courseRepository.save(course);
         return new ResponseEntity<Course>(response, HttpStatus.OK);
     }
@@ -50,7 +65,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public ResponseEntity<Course>eliminaCurso (Long id){
         if (!existe(id)){
-            return new ResponseEntity("No existe registro", HttpStatus.NOT_FOUND);
+            return new ResponseEntity(erroresConfiguration.getRegistroNoExiste(), HttpStatus.NOT_FOUND);
         }else{
             courseRepository.deleteById(id);
             return new ResponseEntity("Registro eliminado", HttpStatus.OK);
