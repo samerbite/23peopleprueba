@@ -14,8 +14,3 @@ errores:
 jwt:
   secret: "23people"
 
-
-uses: donaldpiret/ecs-deploy@master
-with:
-  cluster: api23people
-  target: EC2Co-Defau-JBBORPPF3MUV
