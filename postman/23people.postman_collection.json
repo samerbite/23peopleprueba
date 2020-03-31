@@ -1,0 +1,626 @@
+{
+	"info": {
+		"_postman_id": "1a898779-72dd-4d26-a94d-534fc3a65b04",
+		"name": "23people",
+		"description": "request para prueba 23people",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AuthToken",
+			"item": [
+				{
+					"name": "Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "81928196-58c6-4f12-8fcd-b2e6800801d6",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"tokken\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://167.172.10.122/23people/api/autenticate",
+							"protocol": "http",
+							"host": [
+								"167",
+								"172",
+								"10",
+								"122"
+							],
+							"path": [
+								"23people",
+								"api",
+								"autenticate"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Estudiantes",
+			"item": [
+				{
+					"name": "GuardaEstudiantes",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rut\":\"16208667-7\",\n\t\"name\":\"Francisco\",\n\t\"lastname\": \"Venegas\",\n\t\"age\":\"34\",\n\t\"course\":\"pancho\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://167.172.10.122/23people/api/students/guardaestudiantes",
+							"protocol": "http",
+							"host": [
+								"167",
+								"172",
+								"10",
+								"122"
+							],
+							"path": [
+								"23people",
+								"api",
+								"students",
+								"guardaestudiantes"
+							]
+						},
+						"description": "ingreso de nuevos estudiantes"
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizaEstudiante",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{tokken}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rut\":\"16208667-7\",\n\t\"name\":\"Francisco\",\n\t\"lastname\": \"Venegas\",\n\t\"age\":\"15\",\n\t\"course\":\"pancho\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/23people/api/students/actualizacion/24",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"23people",
+								"api",
+								"students",
+								"actualizacion",
+								"24"
+							]
+						},
+						"description": "ingreso de nuevos estudiantes"
+					},
+					"response": []
+				},
+				{
+					"name": "TraerTodosLosEstudiantes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://167.172.10.122/23people/api/students/all",
+							"protocol": "http",
+							"host": [
+								"167",
+								"172",
+								"10",
+								"122"
+							],
+							"path": [
+								"23people",
+								"api",
+								"students",
+								"all"
+							]
+						},
+						"description": "Trae a todos los estudiantes"
+					},
+					"response": []
+				},
+				{
+					"name": "TraerTodosLosEstudiantesPaginados",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://167.172.10.122/23people/api/students",
+							"protocol": "http",
+							"host": [
+								"167",
+								"172",
+								"10",
+								"122"
+							],
+							"path": [
+								"23people",
+								"api",
+								"students"
+							]
+						},
+						"description": "Trae a todos los estudiantes"
+					},
+					"response": []
+				},
+				{
+					"name": "TraerEstudiantesPorId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://167.172.10.122/23people/api/students/3",
+							"protocol": "http",
+							"host": [
+								"167",
+								"172",
+								"10",
+								"122"
+							],
+							"path": [
+								"23people",
+								"api",
+								"students",
+								"3"
+							]
+						},
+						"description": "Trae a todos los estudiantes"
+					},
+					"response": []
+				},
+				{
+					"name": "EliminaEstudiantes",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{tokken}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://167.172.10.122/23people/api/students/elimina/24",
+							"protocol": "http",
+							"host": [
+								"167",
+								"172",
+								"10",
+								"122"
+							],
+							"path": [
+								"23people",
+								"api",
+								"students",
+								"elimina",
+								"24"
+							]
+						},
+						"description": "Trae a todos los estudiantes"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Cursos",
+			"item": [
+				{
+					"name": "TodosLosCursos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://167.172.10.122/23people/api/courses/all",
+							"protocol": "http",
+							"host": [
+								"167",
+								"172",
+								"10",
+								"122"
+							],
+							"path": [
+								"23people",
+								"api",
+								"courses",
+								"all"
+							]
+						},
+						"description": "se obtienen todos los cursos"
+					},
+					"response": []
+				},
+				{
+					"name": "TodosLosCursosOrdenadosPaginados",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://167.172.10.122/23people/api/courses",
+							"protocol": "http",
+							"host": [
+								"167",
+								"172",
+								"10",
+								"122"
+							],
+							"path": [
+								"23people",
+								"api",
+								"courses"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "trae los cursos ordenados por nombres y paginados"
+					},
+					"response": []
+				},
+				{
+					"name": "CursosPorID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://167.172.10.122/23people/api/courses/1",
+							"protocol": "http",
+							"host": [
+								"167",
+								"172",
+								"10",
+								"122"
+							],
+							"path": [
+								"23people",
+								"api",
+								"courses",
+								"1"
+							]
+						},
+						"description": "Trae los cursos filtrados por Id"
+					},
+					"response": []
+				},
+				{
+					"name": "GuardaNuevosCursos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"feña\",\n\t\"code\": \"0009\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://167.172.10.122/23people/api/courses/guardacurso",
+							"protocol": "http",
+							"host": [
+								"167",
+								"172",
+								"10",
+								"122"
+							],
+							"path": [
+								"23people",
+								"api",
+								"courses",
+								"guardacurso"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateRegistroCursos",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"paco\",\n\t\"code\": \"0011\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://167.172.10.122/23people/api/courses/actualizacion/1",
+							"protocol": "http",
+							"host": [
+								"167",
+								"172",
+								"10",
+								"122"
+							],
+							"path": [
+								"23people",
+								"api",
+								"courses",
+								"actualizacion",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminaRegistroCursos",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{tokken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://167.172.10.122/23people/api/courses/elimina/90",
+							"protocol": "http",
+							"host": [
+								"167",
+								"172",
+								"10",
+								"122"
+							],
+							"path": [
+								"23people",
+								"api",
+								"courses",
+								"elimina",
+								"90"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
